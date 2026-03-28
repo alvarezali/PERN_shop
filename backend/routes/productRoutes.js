@@ -1,22 +1,15 @@
 import express from 'express';
+import { getAllProducts, createProduct, modifyProduct, deleteProduct } from '../controllers/productController.js';
 
 const router = new express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hello from GET');
-});
+router.get('/', getAllProducts);
 
-router.post('/', (req, res) => {
-    res.send('Hello from POST');
-});
+router.post('/', createProduct);
 
-router.put('/', (req, res) => {
-    res.send('Hello from PUT');
-});
+router.put('/', modifyProduct);
 
-router.delete('/', (req, res) => {
-    res.send('Hello from DELETE');
-});
+router.delete('/', deleteProduct);
 
 
 export default router;

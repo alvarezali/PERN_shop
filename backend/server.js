@@ -3,7 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import router from './routes/productRoutes.js'
+import productRoutes from './routes/productRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
