@@ -1,13 +1,13 @@
 {
   "name": "pern_shop",
   "version": "1.0.0",
-  "description": "",
+  "description": "PERN_shop",
   "main": "backend/server.js",
   "scripts": {
     "dev": "nodemon backend/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ali Alvarez",
   "license": "ISC",
   "type": "module",
   "dependencies": {

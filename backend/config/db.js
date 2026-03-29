@@ -3,13 +3,19 @@ import dotenv from 'dotenv';
 
 dotenv.config({path: '../../.env'});
 
-const {PGUSER, PGPASSWORD, PGHOST, PGDATABASE} = process.env
+const {NEONDB_URL} = process.env
 
-export const sql = neon(`postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require&channel_binding=require`);
+//creates a SQL connection using env variables
+// this sql function is used as a tagged template literal, which allows us to write SQL queries safely
+const sql = neon(NEONDB_URL);
 
-async function getPgVersion() {
-    const result = await sql `SELECT version()`
-    console.log(result[0]);
-}
+//async function getPgVersion() {
+//    const result = await sql `SELECT version()`;
+//    console.log(result[0]);
+//    console.log(NEONDB_URL);
+//}
+//
+//getPgVersion();
 
-getPgVersion();
+export default sql
+
