@@ -19,6 +19,7 @@ app.use(morgan('dev')); // logs the requests
 //requests
 app.use('/api/products', productRoutes);
 
+//function to create a new database if it doesn't exists
 async function initializeDB() {
     try {
         const result = await sql `SELECT version()`
@@ -35,16 +36,15 @@ async function initializeDB() {
             )
          `;
 
-        console.log('NeonDB initialized sucessfully');
+        console.log('DB initialized sucessfully');
 
     } catch(error) {
         console.error('Error initializing DB ', error);
     }
 }
 
-//initialize DB
+//initialize DB and server
 initializeDB().then(() => {
-    //initialize server
     app.listen(PORT, () => {
         console.log('Server is running on port ' + PORT);
     });
