@@ -20,9 +20,14 @@ export const getProduct = async (req, res) => {
     const id = req.params;
 
     try {
+        const product = await sql.query(
+            'SELECT * FROM products WHERE id=1$',
+            [id]);
+        res.status(200).json({success:true, data:product});
 
     } catch(error) {
-
+        console.log('Error in getProduct function ', error);
+        res.status(500).json({success:false, message:'Internal server error.'});
     }
 }
 
@@ -41,12 +46,26 @@ export const createProduct = async (req, res) => {
         
     } catch(error) { 
         console.log('Error in createProduct function ', error);
-        res.status(500).json({success:false, message:'Internal server error'});
+        res.status(500).json({success:false, message:'Internal server error.'});
     }
 }
 
 export const updateProduct = async (req, res) => {
-    res.send('Hello from PUT updateProducts');
+    const id = req.params;
+    const {name, price, image} = req.body;
+    if(!name || !price || !image) {
+        return res.status(400).json({success:false, message:'All fields are required.'});
+    }
+
+    try {
+        const updatedProduct = await sql.query(
+            'UPDATE products SET name=1$ price=$2 image=$3 WHERE id=$4 RETURNING *',
+            [name, price, image, id]);
+        res.status(200).json({success:true, data: updatedProduct});
+    } catch(error) {
+        console.log('Error in updateProduct ', error);
+        res.status(500).json({success:false, message:'Internal server error.'});
+    }
 }
 
 export const deleteProduct = async (req, res) => {
@@ -60,7 +79,7 @@ export const deleteProduct = async (req, res) => {
         res.status(200).json({success:true, data:id});
     } catch(error) {
         console.log('Error in deleteProduct function ', error);
-        res.status(500).json({success:false, message:'Internal server error'});
+        res.status(500).json({success:false, message:'Internal server error.'});
     }
     
 }
