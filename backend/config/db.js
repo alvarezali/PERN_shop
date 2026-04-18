@@ -12,7 +12,6 @@ const sql = neon(NEONDB_URL);
 //async function getPgVersion() {
 //    const result = await sql `SELECT version()`;
 //    console.log(result[0]);
-//    console.log(NEONDB_URL);
 //}
 //
 //getPgVersion();

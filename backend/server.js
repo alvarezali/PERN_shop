@@ -16,15 +16,13 @@ app.use(cors())
 app.use(helmet()); //security middleware that sets up various HTTP headers
 app.use(morgan('dev')); // logs the requests
 
-//requests
+//Product requests
 app.use('/api/products', productRoutes);
 
 //function to create a new database if it doesn't exists
 async function initializeDB() {
     try {
-        const result = await sql `SELECT version()`
-        console.log(result[0]);
-        
+   
         await sql `
             CREATE TABLE IF NOT EXISTS products (
               id SERIAL PRIMARY KEY,

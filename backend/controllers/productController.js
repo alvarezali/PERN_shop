@@ -3,12 +3,12 @@ import sql from '../config/db.js'
 export const getProducts = async (req, res) => {
     
     try {
-        const products = await sql `
-            SELECT * FROM products
-            ORDER BY created_at DESC
-            `;
-            console.log(products);
-            res.status(200).json({success:true, data:products});
+        const products = await sql.query('SELECT * FROM products ORDER BY id ASC', []);
+        //const products = await sql `
+        //    SELECT * FROM products
+        //    ORDER BY id ASC
+        //    `;
+        res.status(200).json({success:true, data:products});
 
     } catch(error) {
         console.log('Error in getProducts function ', error);
