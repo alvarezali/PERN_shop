@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config({path: '../../.env'});
 
-export const aj = arcjet({
+const aj = arcjet({
     key: process.env.ARCJET_KEY,
     characteristics: ['userId'],
     rules: [
@@ -24,3 +24,5 @@ export const aj = arcjet({
         }),
     ],
 });
+
+export default aj;
