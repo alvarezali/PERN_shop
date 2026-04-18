@@ -3,7 +3,7 @@ import sql from '../config/db.js'
 export const getProducts = async (req, res) => {
     
     try {
-        const products = await sql.query('SELECT * FROM products ORDER BY id ASC', []);
+        const products = await sql.query('SELECT * FROM products ORDER BY id DESC', []);
         //const products = await sql `
         //    SELECT * FROM products
         //    ORDER BY id ASC
